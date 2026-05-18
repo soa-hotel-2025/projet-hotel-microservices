@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package hotel;
+
+service HotelService {
+  rpc GetHotel (GetHotelRequest) returns (GetHotelResponse);
+  rpc SearchHotels (SearchHotelsRequest) returns (SearchHotelsResponse);
+  rpc CreateHotel (CreateHotelRequest) returns (CreateHotelResponse);
+  rpc UpdateHotel (UpdateHotelRequest) returns (UpdateHotelResponse);
+  rpc DeleteHotel (DeleteHotelRequest) returns (DeleteHotelResponse);
+}
+
+message Hotel {
+  string id = 1;
+  string nom = 2;
+  string ville = 3;
+  string adresse = 4;
+  int32 etoiles = 5;
+  string description = 6;
+}
+
+message GetHotelRequest { string hotel_id = 1; }
+message GetHotelResponse { Hotel hotel = 1; }
+
+message SearchHotelsRequest { string ville = 1; }
+message SearchHotelsResponse { repeated Hotel hotels = 1; }
+
+message CreateHotelRequest {
+  string id = 1;
+  string nom = 2;
+  string ville = 3;
+  string adresse = 4;
+  int32 etoiles = 5;
+  string description = 6;
+}
+message CreateHotelResponse { Hotel hotel = 1; }
+
+message UpdateHotelRequest {
+  string id = 1;
+  string nom = 2;
+  string ville = 3;
+  string adresse = 4;
+  int32 etoiles = 5;
+  string description = 6;
+}
+message UpdateHotelResponse { Hotel hotel = 1; }
+
+message DeleteHotelRequest { string hotel_id = 1; }
+message DeleteHotelResponse { string message = 1; }

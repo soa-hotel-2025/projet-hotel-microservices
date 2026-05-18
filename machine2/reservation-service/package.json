@@ -1,0 +1,16 @@
+{
+  "name": "reservation-service",
+  "version": "1.0.0",
+  "description": "Microservice Réservations - Plateforme de réservation d'hôtels",
+  "main": "reservationMicroservice.js",
+  "scripts": {
+    "start": "node reservationMicroservice.js"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.10.0",
+    "@grpc/proto-loader": "^0.7.10",
+    "kafkajs": "^2.2.4",
+    "rxdb": "^15.15.0",
+    "uuid": "^9.0.0"
+  }
+}
