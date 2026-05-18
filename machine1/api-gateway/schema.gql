@@ -1,0 +1,60 @@
+type Hotel {
+  id: String!
+  nom: String!
+  ville: String!
+  adresse: String!
+  etoiles: Int!
+  description: String
+}
+
+type Chambre {
+  id: String!
+  hotel_id: String!
+  numero: String!
+  type: String!
+  prix: Float!
+  disponible: Boolean!
+}
+
+type Reservation {
+  id: String!
+  chambre_id: String!
+  hotel_id: String!
+  client_nom: String!
+  client_email: String!
+  date_arrivee: String!
+  date_depart: String!
+  statut: String!
+  prix_total: Float!
+}
+
+type Query {
+  # Hôtels
+  hotel(id: String!): Hotel
+  hotels(ville: String): [Hotel]
+
+  # Chambres
+  chambre(id: String!): Chambre
+  chambresByHotel(hotel_id: String!): [Chambre]
+
+  # Réservations
+  reservation(id: String!): Reservation
+  reservationsByClient(client_email: String!): [Reservation]
+  reservations: [Reservation]
+}
+
+type Mutation {
+  # Hôtels
+  createHotel(id: String!, nom: String!, ville: String!, adresse: String!, etoiles: Int!, description: String): Hotel
+  updateHotel(id: String!, nom: String!, ville: String!, adresse: String!, etoiles: Int!, description: String): Hotel
+  deleteHotel(id: String!): String
+
+  # Chambres
+  createChambre(id: String!, hotel_id: String!, numero: String!, type: String!, prix: Float!, disponible: Boolean): Chambre
+  updateChambre(id: String!, hotel_id: String!, numero: String!, type: String!, prix: Float!, disponible: Boolean): Chambre
+  deleteChambre(id: String!): String
+
+  # Réservations
+  createReservation(id: String!, chambre_id: String!, hotel_id: String!, client_nom: String!, client_email: String!, date_arrivee: String!, date_depart: String!, prix_total: Float!): Reservation
+  annulerReservation(id: String!): String
+}
