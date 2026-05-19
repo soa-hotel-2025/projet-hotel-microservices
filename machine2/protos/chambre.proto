@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package chambre;
+
+service ChambreService {
+  rpc GetChambre (GetChambreRequest) returns (GetChambreResponse);
+  rpc GetChambresByHotel (GetChambresByHotelRequest) returns (GetChambresByHotelResponse);
+  rpc CreateChambre (CreateChambreRequest) returns (CreateChambreResponse);
+  rpc UpdateChambre (UpdateChambreRequest) returns (UpdateChambreResponse);
+  rpc DeleteChambre (DeleteChambreRequest) returns (DeleteChambreResponse);
+  rpc UpdateDisponibilite (UpdateDisponibiliteRequest) returns (UpdateDisponibiliteResponse);
+}
+
+message Chambre {
+  string id = 1;
+  string hotel_id = 2;
+  string numero = 3;
+  string type = 4;
+  float prix = 5;
+  bool disponible = 6;
+}
+
+message GetChambreRequest { string chambre_id = 1; }
+message GetChambreResponse { Chambre chambre = 1; }
+
+message GetChambresByHotelRequest { string hotel_id = 1; }
+message GetChambresByHotelResponse { repeated Chambre chambres = 1; }
+
+message CreateChambreRequest {
+  string id = 1;
+  string hotel_id = 2;
+  string numero = 3;
+  string type = 4;
+  float prix = 5;
+  bool disponible = 6;
+}
+message CreateChambreResponse { Chambre chambre = 1; }
+
+message UpdateChambreRequest {
+  string id = 1;
+  string hotel_id = 2;
+  string numero = 3;
+  string type = 4;
+  float prix = 5;
+  bool disponible = 6;
+}
+message UpdateChambreResponse { Chambre chambre = 1; }
+
+message DeleteChambreRequest { string chambre_id = 1; }
+message DeleteChambreResponse { string message = 1; }
+
+message UpdateDisponibiliteRequest {
+  string chambre_id = 1;
+  bool disponible = 2;
+}
+message UpdateDisponibiliteResponse { Chambre chambre = 1; }

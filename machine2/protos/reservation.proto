@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package reservation;
+
+service ReservationService {
+  rpc GetReservation (GetReservationRequest) returns (GetReservationResponse);
+  rpc GetReservationsByClient (GetReservationsByClientRequest) returns (GetReservationsByClientResponse);
+  rpc CreateReservation (CreateReservationRequest) returns (CreateReservationResponse);
+  rpc AnnulerReservation (AnnulerReservationRequest) returns (AnnulerReservationResponse);
+  rpc SearchReservations (SearchReservationsRequest) returns (SearchReservationsResponse);
+}
+
+message Reservation {
+  string id = 1;
+  string chambre_id = 2;
+  string hotel_id = 3;
+  string client_nom = 4;
+  string client_email = 5;
+  string date_arrivee = 6;
+  string date_depart = 7;
+  string statut = 8;
+  float prix_total = 9;
+}
+
+message GetReservationRequest { string reservation_id = 1; }
+message GetReservationResponse { Reservation reservation = 1; }
+
+message GetReservationsByClientRequest { string client_email = 1; }
+message GetReservationsByClientResponse { repeated Reservation reservations = 1; }
+
+message CreateReservationRequest {
+  string id = 1;
+  string chambre_id = 2;
+  string hotel_id = 3;
+  string client_nom = 4;
+  string client_email = 5;
+  string date_arrivee = 6;
+  string date_depart = 7;
+  float prix_total = 8;
+}
+message CreateReservationResponse { Reservation reservation = 1; }
+
+message AnnulerReservationRequest { string reservation_id = 1; }
+message AnnulerReservationResponse { string message = 1; }
+
+message SearchReservationsRequest {}
+message SearchReservationsResponse { repeated Reservation reservations = 1; }
