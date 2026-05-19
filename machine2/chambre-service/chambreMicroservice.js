@@ -1,6 +1,6 @@
 // chambreMicroservice.js - Microservice Chambres
 // Port gRPC : 50052
-// Base de données : SQLite3
+// Base de données : SQLite3.0
 
 const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
